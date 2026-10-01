@@ -1,0 +1,10 @@
+# Python >= 3.12
+numpy
+torch
+timm
+monai
+tqdm
+matplotlib
+devito
+# Optional: only needed for src/sns_forward.py (CuPy/CUDA-kernel forward model)
+# cupy-cuda12x

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" width="1200" height="470" role="img" aria-label="Two-stage pipeline diagram">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#59636e"/></marker></defs>
+<rect x="1" y="1" width="1198" height="468" rx="16" fill="#ffffff" stroke="#d0d7de"/>
+<g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<rect x="30" y="40" width="190" height="110" rx="12" fill="#f6f8fa" stroke="#afb8c1" stroke-width="1.6"/>
+<text x="125.0" y="60" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#afb8c1">INPUT</text>
+<text x="125.0" y="86" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">Seismic shots x</text>
+<text x="125.0" y="109" text-anchor="middle" font-size="15" fill="#59636e">5 sources</text>
+<text x="125.0" y="129" text-anchor="middle" font-size="15" fill="#59636e">10001 × 31 each</text>
+<rect x="285" y="40" width="270" height="110" rx="12" fill="#ddf4ff" stroke="#0969da" stroke-width="1.6"/>
+<text x="420.0" y="60" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#0969da">STAGE 1</text>
+<text x="420.0" y="86" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">CAFormer-B36</text>
+<text x="420.0" y="109" text-anchor="middle" font-size="15" fill="#59636e">HybridStem → backbone</text>
+<text x="420.0" y="129" text-anchor="middle" font-size="15" fill="#59636e">→ U-Net decoder</text>
+<rect x="620" y="40" width="190" height="110" rx="12" fill="#f6f8fa" stroke="#afb8c1" stroke-width="1.6"/>
+<text x="715.0" y="60" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#afb8c1">ESTIMATE</text>
+<text x="715.0" y="86" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">Initial velocity y₁</text>
+<text x="715.0" y="109" text-anchor="middle" font-size="15" fill="#59636e">300 × 1259</text>
+<rect x="875" y="40" width="295" height="110" rx="12" fill="#fff1e5" stroke="#bc4c00" stroke-width="1.6"/>
+<text x="1022.5" y="60" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#bc4c00">PHYSICS</text>
+<text x="1022.5" y="86" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">Devito forward model</text>
+<text x="1022.5" y="109" text-anchor="middle" font-size="15" fill="#59636e">acoustic finite differences</text>
+<text x="1022.5" y="129" text-anchor="middle" font-size="15" fill="#59636e">simulate x₁ = F(y₁) · GPU</text>
+<rect x="875" y="215" width="295" height="100" rx="12" fill="#fff1e5" stroke="#bc4c00" stroke-width="1.6"/>
+<text x="1022.5" y="235" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#bc4c00">MISFIT</text>
+<text x="1022.5" y="261" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">Residual shots</text>
+<text x="1022.5" y="284" text-anchor="middle" font-size="15" fill="#59636e">δx = x − x₁</text>
+<rect x="430" y="205" width="380" height="120" rx="12" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.6"/>
+<text x="620.0" y="225" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.2" fill="#1a7f37">STAGE 2</text>
+<text x="620.0" y="251" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">CAFormer-B36 (residual)</text>
+<text x="620.0" y="274" text-anchor="middle" font-size="15" fill="#59636e">seismic stem on [x, δx] (10 ch)</text>
+<text x="620.0" y="294" text-anchor="middle" font-size="15" fill="#59636e">+ velocity stem on y₁ → predicts δy</text>
+<rect x="430" y="370" width="380" height="76" rx="12" fill="#fbefff" stroke="#8250df" stroke-width="1.6"/>
+<text x="620.0" y="402.0" text-anchor="middle" font-size="19" font-weight="650" fill="#1f2328">ŷ = y₁ + δy</text>
+<text x="620.0" y="425.0" text-anchor="middle" font-size="15" fill="#59636e">final velocity model</text>
+<path d="M220,95 L283,95" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<path d="M555,95 L618,95" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<path d="M810,95 L873,95" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<path d="M1022,150 L1022,213" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="1034" y="188" text-anchor="start" font-size="17" font-style="italic" font-weight="600" fill="#1f2328">x₁</text>
+<path d="M875,265 L812,265" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="843" y="255" text-anchor="middle" font-size="17" font-style="italic" font-weight="600" fill="#1f2328">δx</text>
+<path d="M715,150 L715,203" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="727" y="182" text-anchor="start" font-size="17" font-style="italic" font-weight="600" fill="#1f2328">y₁</text>
+<path d="M125,150 L125,265 L428,265" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="300" y="255" text-anchor="middle" font-size="17" font-style="italic" font-weight="600" fill="#1f2328">x</text>
+<path d="M620,325 L620,368" fill="none" stroke="#59636e" stroke-width="1.8" marker-end="url(#ah)"/>
+<text x="632" y="352" text-anchor="start" font-size="17" font-style="italic" font-weight="600" fill="#1f2328">δy</text>
+<text x="875" y="386" font-size="14.5" fill="#59636e">Stage 2 is trained on δy = y − y₁ (MAPE loss).</text>
+<text x="875" y="406" font-size="14.5" fill="#59636e">δy = 0 reproduces Stage 1, so refinement</text>
+<text x="875" y="426" font-size="14.5" fill="#59636e">starts from the Stage 1 score.</text>
+<text x="30" y="386" font-size="14.5" fill="#59636e">PyTorch and Devito run as separate</text>
+<text x="30" y="406" font-size="14.5" fill="#59636e">processes and exchange .npy files,</text>
+<text x="30" y="426" font-size="14.5" fill="#59636e">avoiding GPU context conflicts.</text>
+</g></svg>

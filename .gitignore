@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Challenge data, checkpoints and generated outputs
+data/
+models/
+*.pth
+*.npz
+stage1_test_predictions/
+test_data_processed/
